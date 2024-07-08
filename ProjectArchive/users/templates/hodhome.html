@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'hodhome.css' %}">
+{% endblock %}
+
+{% block content %}
+<main>
+    <section class="search-bar">
+        <form method="GET" action="{% url 'search' %}">
+            {% csrf_token %}
+            <input type="search" name="title_or_abstract_contains" id="search-input" placeholder="Search documentations...">
+            <button class="search-btn">Search</button>
+        </form>
+
+    </section><br>
+
+    <section class="dashboard">
+        <h2>Dashboard</h2>
+        <div class="dashboard-container">
+            <div class="dash-card">
+                <i class="fas fa-file-alt"></i>
+                <h3>{{ total_faculty_documentations }}</h3>
+                <p>Total Uploaded</p>
+            </div>
+            <div class="dash-card">
+                <i class="fas fa-user"></i>
+                <h3>{{ total_students }}</h3>
+                <p>Total Number of Students</p>
+            </div>
+            <div class="dash-card">
+                <i class="fas fa-chart-bar"></i>
+                <h3>{{ percentage_approved }}%</h3>
+                <p>Total Approved</p>
+            </div>
+            <div class="dash-card">
+                <i class="fas fa-clock"></i>
+                <h3>{{ hours_since_creation }} hour(s) ago</h3>
+                <p>Last Uploaded</p>
+            </div>
+        </div>
+        <div class="recent-submissions">
+            <h2>Recent Submissions</h2>
+            <ul>
+                {% for documentation in latest_faculty_documentations %}
+                <li>
+                    <span class="author">{{ documentation.author }}</span>
+                    <span class="title">{{ documentation.title }}</span>
+                    <span class="faculty">
+                        <a href="{% url 'all_docs' %}?faculty={{ documentation.faculty.name }}">
+                            {{ documentation.faculty }}
+                        </a>
+                    </span>
+                    <span class="programme">
+                        <a href="{% url 'all_docs' %}?programme={{ documentation.programme }}">
+                            {{ documentation.programme|truncatewords:4 }}
+                        </a>
+                    </span>
+                    <span class="abstract">{{ documentation.abstract|truncatewords:12 }}</span>
+
+                    <a href="{% url 'doc_detail' documentation.author.username %}">
+                        <button class="open-btn">View</button>
+                    </a>
+                    <!-- <a href="">
+                        <button class="chat-btn">Open Doc</button>
+                    </a> -->
+                </li>
+                {% empty %}
+                <h3>None yet...</h3>
+                {% endfor %}
+            </ul>
+        </div>
+    </section>
+
+</main>
+
+{% endblock %}

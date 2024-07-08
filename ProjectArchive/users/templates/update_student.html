@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'update_student.css' %}">
+<link rel="stylesheet" href="{% static 'animation.css' %}">
+{% endblock %}
+
+{% block content %}
+<main role="main" class="container transitionIn">
+
+    <form method="post" id="updateStudentForm" action="{% url 'update_student' username %}"
+        data-departments-url="{% url 'load_departments' %}" data-programmes-url="{% url 'load_programmes' %}">
+        {% csrf_token %}
+        <h2>Update Profile</h2>
+            <p>
+                <label for="{{ form.department.id_for_label }}">Department:</label>
+                {{ form.department }}
+            </p>
+
+            <p>
+                <label for="{{ form.programme.id_for_label }}">Programme:</label>
+                {{ form.programme }}
+            </p>
+
+            <p>
+                <label for="{{ form.gender.id_for_label }}">Gender:</label>
+                {{ form.gender }}
+            </p>
+
+            <p>
+                <label for="{{ form.session.id_for_label }}">Session:</label>
+                {{ form.session }}
+            </p>
+
+        <button class="login-btn" type="submit">Update</button>
+    </form>
+
+</main>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    // $("#id_faculty").change(function () {
+    //     const url = $("#updateStudentForm").attr("data-departments-url");
+    //     const facultyId = $(this).val();
+
+    //     $.ajax({
+    //         url: url,
+    //         data: {
+    //             'faculty_id': facultyId
+    //         },
+    //         success: function (data) {
+    //             $("#id_department").html(data);
+    //             $("#id_programme").html('');
+
+    //             if ($("#id_department").val() === '') {
+    //                 $("#id_programme").html(''); // Clear the value of #id_programme if #id_department is empty
+    //             } else {
+    //                 // Only make the AJAX call to update #id_programme if #id_department is not empty
+    //                 const next_url = $("#updateStudentForm").attr("data-programmes-url");
+    //                 const departmentId = $("#id_department").val(); // Use the newly updated #id_department value
+
+    //                 $.ajax({
+    //                     url: next_url,
+    //                     data: {
+    //                         'department_id': departmentId
+    //                     },
+    //                     success: function (data) {
+    //                         $("#id_programme").html(data);
+    //                     }
+    //                 });
+    //             }
+    //         }
+    //     });
+    // });
+
+    $("#id_department").change(function () {
+        const next_url = $("#updateStudentForm").attr("data-programmes-url");
+        const departmentId = $("#id_department").val(); // Use the newly updated #id_department value
+
+        $.ajax({
+            url: next_url,
+            data: {
+                'department_id': departmentId,
+                'department_name': departmentId
+            },
+            success: function (data) {
+                $("#id_programme").html(data);
+            }
+        });
+    });
+
+</script>
+{% endblock %}

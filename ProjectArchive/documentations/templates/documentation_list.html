@@ -1,0 +1,168 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block other_links %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="{% static 'documentation_list.css' %}">
+<link rel="stylesheet" href="{% static 'animation.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<main class="container">
+  <section class="search-area">
+    <h2>Filter Documentations</h2>
+    <form method="GET" action="{% url 'all_docs' %}" id="documentationSearchForm"
+      data-departments-url="{% url 'load_departments' %}" data-programmes-url="{% url 'load_programmes' %}">
+      <!-- {% csrf_token %} -->
+      <div class="form-row">
+        <div class="form-group col-12">
+          <div class="input-group">
+            <input class="form-control py-2 border-right-0 border" type="search" name="title_contains"
+              placeholder="Title contains..." />
+            <span class="input-group-append">
+              <div class="input-group-text bg-transparent">
+                <i class="fa fa-search"></i>
+              </div>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-12">
+          <div class="input-group">
+            <input class="form-control py-2 border-right-0 border" type="search" name="abstract_contains"
+              placeholder="Abstract contains..." />
+            <span class="input-group-append">
+              <div class="input-group-text bg-transparent">
+                <i class="fa fa-search"></i>
+              </div>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-2">
+          <label for="id_department">Department</label>
+          <select name="department" id="id_department" class="form-control">
+            <option selected>Choose...</option>
+            {% for department in departments %}
+            <option value="{{ department.name }}">{{ department.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-group col-md-2">
+          <label for="id_programme">Programme</label>
+          <select name="programme" id="id_programme" class="form-control">
+            <option selected>Choose...</option>
+            {% for programme in programmes %}
+            <option value="{{ programme.name }}">{{ programme.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-group col-md-2">
+          <label for="id_supervisor">Supervisor</label>
+          <select id="id_supervisor" class="form-control" name="supervisor">
+            <option selected>Choose...</option>
+            {% for supervisor in supervisors %}
+            <option value="{{ supervisor.name }}">{{ supervisor.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-group col-md-1 col-lg-2">
+          <label for="publishDateMin">Publish date minimum</label>
+          <input type="date" class="form-control" id="publishDateMin" name="date_min">
+        </div>
+        <div class="form-group col-md-1 col-lg-2">
+          <label for="publishDateMax">Publish date maximum</label>
+          <input type="date" class="form-control" id="publishDateMax" name="date_max">
+        </div>
+
+        <ul>
+          <li>
+            <input class="form-check-input" type="checkbox" id="uploaded" name="uploaded">
+            <label class="form-check-label" for="uploaded" style="margin-right: 10px;">
+              Uploaded
+          </label>
+          </li>
+          <li>
+            <input class="form-check-input" type="checkbox" id="approved" name="approved">
+            <label class="form-check-label" for="approved" style="margin-right: 10px;">
+              Approved
+          </li>
+          <li>
+            <input class="form-check-input" type="checkbox" id="disapproved" name="disapproved">
+            <label class="form-check-label" for="disapproved" style="margin-right: 10px">
+              Disapproved
+            </label>
+          </li>
+        </ul>
+      </div>
+      <button type="submit">Search</button>
+    </form>
+  </section>
+
+  <section class="search-results" transitionDown>
+    <div id="search-results-header">
+      <h2>Search Results</h2>
+      <a href="{% url 'export_csv' %}" id="link-button" style="margin-left: 580px;">
+        <p>CSV</p>
+      </a>
+      <a href="{% url 'export_excel' %}" id="link-button">
+        <p>Excel</p>
+      </a>
+      <a href="{% url 'export_pdf' %}" id="link-button">
+        <p>PDF</p>
+      </a>
+    </div>
+    <ul>
+      {% for documentation in documentations %}
+      <li>
+        <span class="author">{{ documentation.author }}</span>
+        <span class="title">{{ documentation.title }}</span>
+        <span class="faculty">
+          <a href="{% url 'all_docs' %}?faculty={{ documentation.faculty.name }}">
+            {{ documentation.faculty }}
+          </a>
+        </span>
+        <span class="programme">
+          <a href="{% url 'all_docs' %}?programme={{ documentation.programme }}">
+            {{ documentation.programme|truncatewords:4 }}
+          </a>
+        </span>
+        <span class="abstract">{{ documentation.abstract|truncatewords:12 }}</span>
+
+        <a href="{% url 'doc_detail' documentation.author.username %}">
+          <button class="open-btn">View</button>
+        </a>
+      </li>
+      {% empty %}
+      <p>No documentation found.</p>
+      {% endfor %}
+      </ul>
+
+      {% if is_paginated %}
+        <div class="pagination">
+          <span class="page-links">
+            {% if page_obj.has_previous %}
+              <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+            {% endif %}
+            <span class="page-current">
+              Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+            </span>
+            {% if page_obj.has_next %}
+              <a href="?page={{ page_obj.next_page_number }}">Next</a>
+            {% endif %}
+          </span>
+        </div>
+      {% endif %}
+  </section>
+
+</main>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="{% static 'js/load_items.js' %}"></script>
+{% endblock %}

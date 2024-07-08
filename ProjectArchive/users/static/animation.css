@@ -1,0 +1,33 @@
+.transitionIn {
+    /* animation: transitionIn 0.75s; */
+    animation: transitionIn 1s;
+
+}
+
+.transitionDown {
+    animation: transitionDown 1s;
+}
+
+@keyframes transitionDown {
+    from {
+        opacity: 0;
+        transform: rotateX(-10deg);
+    }
+
+    to {
+        opacity: 1;
+        transform: rotateX(0);
+    }    
+}
+
+@keyframes transitionIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }   
+}

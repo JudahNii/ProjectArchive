@@ -1,0 +1,116 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ProjectArchive</title>
+    {% block title %}
+    {% endblock %}
+
+    <link rel="stylesheet" href="{% static 'base.css' %}">
+    <link rel="icon" href="{% static 'logo-nobg.png' %}">
+    {% block styles %}
+    {% endblock %}
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    {% block links %}
+    {% endblock %}
+
+    {% block other_links %}
+    {% endblock %}
+</head>
+
+<body>
+    {% block header %}
+    <header>
+        <div class="logo">
+            <a id="logo-link" href="{% url 'home' %}">
+                <img style="width: 50px;" src="{% static 'logo-nobg.png' %}" alt="ProjectArchive">
+            </a>
+
+            {% if user.is_authenticated %}
+            <a href="{% url 'home' %}">
+                <h1>ProjectArchive</h1>
+            </a>
+
+            {% if user.is_student %}
+            <a href="{% url 'update_student' user.student.username %}">
+                <h4 class="user-name">{{ user.first_name }} {{ user.last_name }}</h4>
+            </a>
+            {% elif user.is_hod %}
+            <a href=".">
+                <h4 class="user-name">{{ user.first_name }} {{ user.last_name }}</h4>
+            </a>
+            {% endif %}
+
+            {% else %}
+            <a href="{% url 'landing_page' %}">
+                <h1>ProjectArchive</h1>
+            </a>
+            {% endif %}
+        </div>
+
+        <div class="buttons">
+            {% if user.is_student %}
+            {% block student-links %}
+            {% if not has_uploaded_documentation %}
+            <a href="{% url 'upload_doc' %}">
+                <button class="login-btn">Upload Doc</button>
+            </a>
+            {% else %}
+            <a href="{% url 'check_status_detail' user.username %}">
+                <button class="login-btn">Check Doc Status</button>
+            </a>
+            {% endif %}
+
+            <a href="{% url 'logout' %}">
+                <button class="login-btn">Logout</button>
+            </a>
+            {% endblock %}
+            {% elif user.is_hod %}
+            {% block hod-links %}
+
+            <a href="{% url 'bulk_upload_documentations' %}">
+                <button class="login-btn">Bulk Upload</button>
+            </a>
+            <a href="{% url 'student_list' %}">
+                <button class="login-btn">Students</button>
+            </a>
+            <a href="{% url 'logout' %}">
+                <button class="login-btn">Logout</button>
+            </a>
+            {% endblock %}
+            {% else %}
+            <a href="{% url 'login' %}">
+                <button class="login-btn">Login</button>
+            </a>
+            {% endif %}
+        </div>
+
+    </header>
+    {% endblock %}
+    {% block content %}
+
+    {% endblock %}
+    <footer>
+        <ul class="social-media">
+            <li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+            <li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="#" target="_blank"><i class="fab fa-instagram"></i></a></li>
+        </ul>
+        <p class="copyright">&copy; <span id="year"></span> Project Archive. All rights reserved.</p>
+    </footer>
+
+    {% block scripts %}
+    {% endblock %}
+
+    <script>
+        const yearElement = document.getElementById("year");
+        yearElement.textContent = new Date().getFullYear();
+    </script>
+</body>
+
+</html>

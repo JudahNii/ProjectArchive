@@ -1,0 +1,5 @@
+<option selected style="font-family: 'Poppins', sans-serif;">Choose...</option>
+{% for department in departments %}
+    <option value="{{ department.name }}" style="font-family: 'Poppins', sans-serif;">{{ department.name }}</option>
+{% endfor %}
+

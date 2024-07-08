@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block styles %}
+<!-- <link rel="stylesheet" href="{% static 'studenthome.css' %}"> -->
+<link rel="stylesheet" href="{% static 'bulk_upload_documentation.css' %}">
+{% endblock %}
+
+{% block content %}
+<main role="main" class="container">
+
+    <section class="multiple-file-upload">
+        <h2>Documentation Bulk Upload</h2>
+        <form method="post" enctype="multipart/form-data" id="multiple-file-upload">
+            {% csrf_token %}
+            <input type="file" name="upload_files" multiple>
+
+
+            <button type="submit" class="upload-btn">Upload</button>
+        </form>
+    </section>
+</main>
+
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block other_links %}
+<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
+<link rel="stylesheet" href="{% static 'approved_documentation_detail.css' %}">
+<link rel="stylesheet" href="{% static 'animation.css' %}">
+
+{% endblock %}
+
+
+{% block content %}
+<main role="main" class="container transitionDown">
+
+
+
+
+    <section class="project-detail">
+        <h2>Project Details</h2>
+
+        <ul>
+            <li>
+                <span class="label">Author:</span>
+                <span id="author">{{ documentation.author }}</span>
+            </li>
+            <li>
+                <span class="label">Title:</span>
+                <span id="title">{{ documentation.title }}</span>
+            </li>
+            <li>
+                <span class="label">Faculty:</span>
+                <a href="{% url 'approved_docs' %}?faculty={{ documentation.faculty }}">
+                    <span class="value">{{ documentation.faculty }}</span>
+                </a>
+            </li>
+            <li>
+                <span class="label">Department:</span>
+                <a href="{% url 'approved_docs' %}?department={{ documentation.department }}">
+                    <span class="value">{{ documentation.department }}</span>
+                </a>
+            </li>
+            <li>
+                <span class="label">Programme:</span>
+                <a href="{% url 'approved_docs' %}?programme={{ documentation.programme }}">
+                    <span class="value">{{ documentation.programme }}</span>
+                </a>
+            </li>
+            <li>
+                <span class="label">Supervisor:</span>
+                <a href="{% url 'approved_docs' %}?supervisor={{ documentation.supervisor }}">
+                    <span class="value">{{ documentation.supervisor }}</span>
+                </a>
+            </li>
+            <li>
+                <span class="label">Status:</span>
+                <span class="status">{{ documentation.status }}</span>
+            </li>
+            <li>
+                <span class="label">Comment:</span>
+                <span class="comment">{{ documentation.comment }}</span>
+            </li>
+        </ul>
+
+        <div class="abstract">
+            <h3>Abstract</h3>
+            <p>{{ documentation.abstract }}</p>
+        </div>
+
+        <div class="below-pdf">
+            <div>
+                <a id='return-link' href="{% url 'home' %}">
+                    <p>Back to Home</p>
+                </a>
+            </div>
+
+        </div>
+
+    </section>
+</main>
+{% endblock %}

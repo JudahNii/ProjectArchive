@@ -1,0 +1,88 @@
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2em;
+}
+
+.search-bar {
+    margin-left: 80%;
+    transform: translate(-50%, -50%);
+    width: 30%; /* keep the search bar width at 60% of the page width */
+    display: inline-block;
+    flex-direction: column-reverse;
+    justify-content: center;
+    background-color: #0C4932; /* updated search bar background color */
+    padding: 0.5em;
+    border-radius: 0.5em;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin-top: 1em;
+}
+
+.search-bar form {
+    width: 125%;
+}
+
+#search-input {
+    width: 60%;
+    padding: 0.5em;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 0.5em;
+}
+
+.search-btn {
+    background-color: #610707; /* updated search button background color */
+    color: #fff;
+    border: none;
+    padding: 0.5em 1em;
+    font-size: 1em;
+    cursor: pointer;
+    width: 20%; /* keep the search button width at 20% of the search bar width */
+}
+
+#student-list {
+    width: 80%;
+    border-collapse: collapse;
+    margin-bottom: 80px;
+}
+
+#student-list th, #student-list td {
+    border: 2px solid black;
+    padding: 0.5em;
+    text-align: left;
+}
+
+#student-list th {
+    background-color: #0C4932;
+    color: #fff;
+}
+
+.action-btn {
+    background-color: #610707;
+    color: #fff;
+    border: none;
+    padding: 0.5em 1em;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.action-btn:hover {
+    background-color: #4e0f0f;
+}
+
+table a {
+    color: #000;
+    text-decoration: none;
+    /* font-size: 1em; */
+    color: #333;
+    transition: color 0.3s ease-in-out;
+}
+
+table a:hover {
+    color: #610707;
+    cursor: pointer;
+    font-size: 1.1em;
+}
+

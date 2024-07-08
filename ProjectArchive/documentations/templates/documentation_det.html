@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block other_links %}
+<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
+<link rel="stylesheet" href="{% static 'documentation_detail.css' %}">
+<link rel="stylesheet" href="{% static 'animation.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<main role="main" class="container transitionDown">
+
+
+    <!-- {% if documentation not in student.favorite_documentations.all %}
+        <a href="{% url 'add_favorite' documentation.author.username %}">Add to Favorites</a>
+    {% else %}
+        <a href="{% url 'remove_favorite' documentation.author.username %}">Remove from Favorites</a>
+    {% endif %} -->
+
+    <section class="project-detail">
+        <h2>Project Details</h2>
+        <ul>
+            <li>
+                <span class="label">Author:</span>
+                <span id="author">{{ documentation.author }}</span>
+            </li>
+            <li>
+                <span class="label">Title:</span>
+                <span id="title">{{ documentation.title }}</span>
+            </li>
+            <li>
+                <span class="label">Faculty:</span>
+                <a href="{% url 'all_docs' %}?faculty={{ documentation.faculty }}">
+                    <span class="value">{{ documentation.faculty }}</span>
+                </a>
+            </li>
+            <li>
+                <span class="label">Department:</span>
+                <a href="{% url 'all_docs' %}?department={{ documentation.department }}">
+                    <span class="value">{{ documentation.department }}</span>
+                </a>
+            </li>
+            <li>
+                <span class="label">Programme:</span>
+                <a href="{% url 'all_docs' %}?programme={{ documentation.programme }}">
+                    <span class="value">{{ documentation.programme }}</span>
+                </a>
+            </li>
+            <li>
+                <span class="label">Supervisor:</span>
+                <a href="{% url 'all_docs' %}?supervisor={{ documentation.supervisor }}">
+                    <span class="value">{{ documentation.supervisor }}</span>
+                </a>
+            </li>
+            <li>
+                <span class="label">Status:</span>
+                <a href="{% if documentation.status == 'Uploaded' %}{% url 'all_docs' %}?uploaded=on
+                             {% elif documentation.status == 'Approved' %}{% url 'all_docs' %}?approved=on
+                             {% elif documentation.status == 'Disapproved' %}{% url 'all_docs' %}?disapproved=on
+                             {% else %}{% url 'all_docs' %}?status={{ documentation.status }}{% endif %}">
+                    <span class="value">{{ documentation.status|capfirst }}</span>
+                </a>
+            </li>
+        </ul>
+        <div class="abstract">
+            <h3>Abstract</h3>
+            <p>{{ documentation.abstract }}</p>
+
+        </div>
+        <div class="project-document">
+            <h3>Project Document</h3>
+            <iframe src="{% url 'pdf_view' documentation.author.username %}#toolbar=0" type="application/pdf" width="100%" height="700px" allow="fullscreen"></iframe>
+            
+        </div>
+
+        <div class="below-pdf">
+            <div>
+                <a id='return-link' href="{% url 'all_docs' %}">
+                    <p>Back to list</p>
+                </a>
+            </div>
+
+            <div class="button-group">
+                {% if documentation.status == 'Uploaded' %}
+                <a href="{% url 'manage_documentation' username=documentation.author.username action='approve' %}">
+                    <button class="approve-btn">Approve</button>
+                </a>
+                <a href="{% url 'manage_documentation' username=documentation.author.username action='disapprove' %}">
+                    <button class="disapprove-btn">Disapprove</button>
+                </a>
+                <a href="{% url 'manage_documentation' username=documentation.author.username action='remove' %}">
+                    <button class="remove-btn">Remove</button>
+                </a>
+                <a href="{% url 'manage_documentation' username=documentation.author.username action='delete' %}">
+                    <button class="delete-btn">Delete</button>
+                </a>
+
+
+                {% elif documentation.status == 'Approved' %}
+                <a href="{% url 'manage_documentation' username=documentation.author.username action='remove' %}">
+                    <button class="remove-btn">Remove</button>
+                </a>
+                <a href="{% url 'manage_documentation' username=documentation.author.username action='delete' %}">
+                    <button class="delete-btn">Delete</button>
+                </a>
+
+                {% elif documentation.status == 'Disapproved' %}
+                <a href="{% url 'manage_documentation' username=documentation.author.username action='delete' %}">
+                    <button class="delete-btn">Delete</button>
+                </a>
+
+                {% elif documentation.status == 'Removed' %}
+                <a href="{% url 'manage_documentation' username=documentation.author.username action='approve' %}">
+                    <button class="approve-btn">Approve</button>
+                </a>
+                <a href="{% url 'manage_documentation' username=documentation.author.username action='delete' %}">
+                    <button class="delete-btn">Delete</button>
+                </a>
+
+                {% endif %}
+            </div>
+
+        </div>
+
+
+    </section>
+</main>
+{% endblock %}

@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+.poppins-regular {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+body {
+    font-family: "Poppins", Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #E6E6E6;
+    height: 80vh;
+}
+
+header {
+    background-color: #0C4932;
+    color: #fff;
+    padding: 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#logo-link {
+    margin: 0px;
+    padding-top: 5px;
+}
+
+.user-name {
+    margin-left: 10px;
+    margin-bottom: 0;
+    /* margin-top: 10px; */
+}
+
+h1 {
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+}
+
+button {
+    border-radius: 4px;
+    font-family: "Poppins", Arial, sans-serif;
+}
+
+.update-btn {
+    background-color: #610707;
+    color: #fff;
+    border: none;
+    padding: 0.5em 1em;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.update-btn:hover {
+    background-color: #4e0f0f;
+}
+
+.login-btn {
+    background-color: #610707;
+    color: #fff;
+    border: none;
+    font-size: 1em;
+    cursor: pointer;
+    padding: 0.7em 1em;
+    margin-left: 15px;
+}
+
+.login-btn:hover {
+    background-color: #4e0f0f;
+}
+
+/* main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2em;
+} */
+
+.open-btn,
+.chat-btn {
+    background-color: #610707;
+    color: #fff;
+    border: none;
+    padding: 0.5em 1em;
+    font-size: 1em;
+    cursor: pointer;
+    margin-left: 1em;
+}
+
+.open-btn:hover,
+.chat-btn:hover {
+    background-color: #4e0f0f;
+}
+
+footer {
+    background-color: #0C4932;
+    color: #fff;
+    padding: 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.social-media {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.social-media li {
+    margin: 0 0.5em;
+}
+
+.social-media a {
+    color: #fff;
+}
+
+.copyright {
+    font-size: 0.8em;
+    color: #fff;
+    margin-right: 40px;
+}

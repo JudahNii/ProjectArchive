@@ -1,0 +1,87 @@
+main {
+    background-image: url("images/landing_page4.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+form {
+    background-color: #fff;
+    padding: 2em;
+    border: 1px solid #ccc;
+    border-radius: 0.5em;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    width: 600px;
+    margin-bottom: 110px;
+    margin-top: 30px;
+}
+
+/* .uploadDocumentationForm {
+    background-color: #fff;
+    padding: 2em;
+    border: 1px solid #ccc;
+    border-radius: 0.5em;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    width: 550px;
+    margin-bottom: 80px;
+} */
+
+.uploadDocumentationForm label {
+    display: block;
+    margin-bottom: 0.3em;
+}
+
+.uploadDocumentationForm input {
+    width: 100%;
+    padding: 0.5em;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    margin-bottom: 1em;
+}
+
+.uploadDocumentationForm select option {
+    font-family: 'Poppins', sans-serif;
+}
+
+.uploadDocumentationForm button[type="submit"] {
+    background-color: #610707;
+    color: #fff;
+    border: none;
+    padding: 0.5em 1em;
+    font-size: 1em;
+    cursor: pointer;
+    margin-top: 1em;
+    margin-left: 0;
+}
+
+.uploadDocumentationForm button[type="submit"]:hover {
+    background-color: #4e0f0f;
+}
+
+.uploadDocumentationForm select {
+    font-family: 'Poppins', sans-serif;
+}
+
+.uploadDocumentationForm textarea {
+    width: 100%;
+    padding: 0.5em;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    margin-bottom: 1em;
+}
+
+#updateStudentForm input:focus,
+#updateStudentForm textarea:focus,
+#updateStudentForm select:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.helptext {
+    font-size: 0.8em;
+    font-weight: bold;
+}
+
+#id_pdf_file {
+    margin-bottom: 0px;
+}

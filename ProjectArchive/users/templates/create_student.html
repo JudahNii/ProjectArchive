@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'create_student.css' %}">
+<link rel="stylesheet" href="{% static 'animation.css' %}">
+
+{% endblock %}
+
+
+{% block content %}
+    <main role="main" class="container transitionIn">
+        <section class="create_student">
+            <form method="post" id="createStudentForm" action="{% url 'create_student' %}" data-departments-url="{% url 'load_departments' %}" data-programmes-url="{% url 'load_programmes' %}">
+                {% csrf_token %}
+                <h3>Create Student</h3>
+                <div>
+                    {{ form.as_p }}
+                </div>
+                <button type="submit" class="btn btn-primary">Create</button>
+            </form>
+
+        </section>
+
+
+        <section class="create_student" id="upload_excel">
+            <form method="post" enctype="multipart/form-data" action="{% url 'upload_excel' %}">
+                {% csrf_token %}
+                <h3>Upload Students Excel File</h3>
+                {{ excel_form.as_p }}
+                <button type="submit" class="btn btn-primary">Upload</button>
+            </form>
+        </section>
+
+    <!-- <form method="post" action="{% url 'create_student' %}">
+        {% csrf_token %}
+        <h3>Create Student</h3>
+        {{ create_form.as_p }}
+        <button type="submit" class="btn btn-primary">Upload</button>
+    </form> -->
+
+    
+
+    </main>
+
+    {% endblock %}
+    <!-- Add your JavaScript links here -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        $("#id_faculty").change(function () {
+            const url = $("#createStudentForm").attr("data-departments-url");
+            const facultyId = $(this).val();
+
+            $.ajax({
+                url: url,
+                data: {
+                    'faculty_id': facultyId
+                },
+                success: function (data) {
+                    $("#id_department").html(data);
+                    $("#id_programme").html('');
+
+                    if ($("#id_department").val() === '') {
+                        $("#id_programme").html(''); // Clear the value of #id_programme if #id_department is empty
+                    } else {
+                        // Only make the AJAX call to update #id_programme if #id_department is not empty
+                        const next_url = $("#createStudentForm").attr("data-programmes-url");
+                        const departmentId = $("#id_department").val(); // Use the newly updated #id_department value
+
+                        $.ajax({
+                            url: next_url,
+                            data: {
+                                'department_id': departmentId
+                            },
+                            success: function (data) {
+                                $("#id_programme").html(data);
+                            }
+                        });
+                    }
+                }
+            });
+        });
+
+        $("#id_department").change(function () {
+            const next_url = $("#createStudentForm").attr("data-programmes-url");
+            const departmentId = $("#id_department").val(); // Use the newly updated #id_department value
+
+            $.ajax({
+                url: next_url,
+                data: {
+                    'department_id': departmentId
+                },
+                success: function (data) {
+                    $("#id_programme").html(data);
+                }
+            });
+        });
+
+    </script>
+</body>
+<footer>
+
+</footer>
+</html>

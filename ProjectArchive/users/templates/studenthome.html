@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'studenthome.css' %}">
+<link rel="stylesheet" href="{% static 'animation.css' %}">
+{% endblock %}
+
+{% block content %}
+<main role="main" class="container transitionIn">
+
+  <form method="GET" action="{% url 'search' %}">
+    {% csrf_token %}
+    <section class="search-bar">
+      <input type="search" name="title_or_abstract_contains" id="search-input" placeholder="Search documentations...">
+      <button class="search-btn">Search</button>
+    </section><br>
+  </form>
+
+  <a id="advanced-search" href="{% url 'approved_docs' %}">
+    <p>Try advanced search</p>
+  </a>
+
+
+  <section class="favorites container">
+    <h2>Your Favorites...</h2>
+    <ul>
+      {% for documentation in favorite_documentations %}
+      <li>
+        <span class="author">{{ documentation.author }}</span>
+        <span class="title">{{ documentation.title|truncatewords:3 }}</span>
+        <span class="faculty">
+          <a href="{% url 'approved_docs' %}?faculty={{ documentation.faculty }}">{{ documentation.faculty }}</a>
+        </span>
+        <span class="programme">
+          <a href="{% url 'approved_docs' %}?programme={{ documentation.programme }}">
+            {{ documentation.programme|truncatewords:6 }}</a>
+        </span>
+        <span class="abstract">{{ documentation.abstract|truncatewords:12 }}</span>
+        <a href="{% url 'approved_doc_detail' documentation.author.username %}">
+          <button class="open-btn">View</button>
+        </a>
+        <button class="chat-btn" onclick="window.open('{{ documentation.web_view_link }}', '_blank')">
+          Open Doc
+        </button>
+      </li>
+      {% empty %}
+      <p id="no-favorites">No favorites yet...</p>
+      {% endfor %}
+    </ul>
+  </section>
+
+</main>
+{% endblock %}
+<!-- Add your JavaScript links here -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+  integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+  integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

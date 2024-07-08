@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'studenthome.css' %}">
+    <link rel="stylesheet" href="{% static 'upload_documentation.css' %}">
+{% endblock %}
+
+{% block content %}
+    <main role="main" class="container">   
+    <!-- <h3>{{  message.succes }}</h3> -->
+    <form class="uploadDocumentationForm" method="post" action="{% url 'upload_doc' %}" enctype="multipart/form-data">
+        <h3>Upload Documentation</h3>
+        {% csrf_token %}
+        <div>
+            {{ form.as_p }}
+        </div>
+        <button class="login-btn" type="submit">Upload</button>
+    </form>
+
+    </main>
+{% endblock %}

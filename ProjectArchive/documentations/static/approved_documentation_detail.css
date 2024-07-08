@@ -1,0 +1,176 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #E6E6E6;
+    height: 100%;
+}
+
+header {
+    background-color: #0C4932;
+    color: #fff;
+    padding: 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h1 {
+    margin: 0;
+}
+
+.login-btn {
+    background-color: #610707;
+    color: #fff;
+    border: none;
+    padding: 0.5em 1em;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.login-btn:hover {
+    background-color: #4e0f0f;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2em;
+    margin-bottom: 80px;
+}
+
+
+.project-detail {
+    background-color: #fff;
+    padding: 2em;
+    border: 1px solid #ccc;
+    border-radius: 0.5em;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    width: 80%;
+}
+
+.project-detail h2 {
+    color: #610707;
+    margin-top: 0;
+    margin-bottom: 15px;
+    padding: 0;
+    font-size: 50px;
+}
+
+.project-detail ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.project-detail li {
+    margin-bottom: 1em;
+}
+
+#favorite {
+    position: absolute;
+    top: 27%;
+    right: 12%;
+}
+
+.label {
+    font-weight: bold;
+/*    margin-right: 1em;*/
+}
+
+#author {
+    font-size: 1em;
+    color: #333;
+}
+
+
+.value {
+    font-size: 1em;
+    color: #333;
+    transition: color 0.2s ease-in-out; /* Add transition for smooth animation */
+}
+
+.value:hover {
+    color: #610707; /* Change color on hover */
+    cursor: pointer; /* Change cursor to indicate it's a link */
+    font-size: 1.1em;
+}
+
+.abstract {
+    margin-top: 2em;
+}
+
+.abstract h3 {
+    margin-top: 0;
+}
+
+.abstract p {
+    margin-bottom: 1em;
+}
+
+.project-document {
+    margin-top: 2em;
+}
+
+.project-document h3 {
+    margin-top: 0;
+}
+
+.button-group {
+    text-align: right;
+    align-items: center;
+    /* margin-left: 70%; */
+}
+
+.approve-btn,.disapprove-btn,.remove-btn,.delete-btn {
+    background-color: #610707;
+    color: #fff;
+    border: none;
+    padding: 0.5em 1em;
+    font-size: 1em;
+    cursor: pointer;
+    margin-left: 1em;
+}
+
+.approve-btn:hover,.disapprove-btn:hover,.remove-btn:hover,.delete-btn:hover {
+    background-color: #4e0f0f;
+}
+
+
+.below-pdf {
+    margin-top: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#return-link {
+    color: #610707;
+    position: relative;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#return-link p {
+    margin-bottom: 0;
+}
+
+#return-link::after {
+    content: '⬅';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    display: block;
+    right: 0;
+    background: none;
+    transition: width 0.4s ease;
+    -webkit-transition: width 0.4s ease;
+    margin-top: -3px;
+    margin-right: 18px;
+}
+
+#return-link:hover::after {
+    width: 80%;
+    right: 0;
+    background: none;
+}

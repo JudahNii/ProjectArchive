@@ -1,0 +1,129 @@
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-image: url("images/bg1.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    /* background: -webkit-linear-gradient(156deg, #0c4932,#000000,#610707);
+    background: linear-gradient(156deg, #0c4932,#000000,#610707); */
+
+    /* filter: blur(8px);
+    -webkit-filter: blur(8px); */
+}
+
+.search-bar {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    text-align: center;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    /* keep the search bar width at 60% of the page width */
+    /* margin: 0 auto; */
+    display: flex;
+    justify-content: center;
+    background-color: #0C4932;
+    /* updated search bar background color */
+    padding: 0.5em;
+    border-radius: 0.5em;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: -200px;
+}
+
+
+#search-input {
+    width: 100%;
+    padding: 0.5em;
+    font-size: 1.5em;
+    border: 1px solid #ccc;
+    border-radius: 0.5em;
+}
+
+.search-btn {
+    background-color: #610707;
+    /* updated search button background color */
+    color: #fff;
+    border: none;
+    padding: 0.5em 1em;
+    font-size: 1em;
+    cursor: pointer;
+    width: 20%;
+    margin-left: 6px;
+    /* keep the search button width at 20% of the search bar width */
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+/*    margin-top: 2em;*/
+    margin-top: 150px;
+}
+
+.btn {
+    background-color: #610707;
+    /* updated button background color */
+    color: #fff;
+    border: none;
+    padding: 1em 2em;
+    /* make each button bigger */
+    font-size: 1.2em;
+    /* make each button bigger */
+    cursor: pointer;
+    margin: 0 0.5em;
+    border-radius: 0.5em;
+    /* add rounded corners */
+}
+
+#book {
+    position: absolute;
+    top: 120px;
+    left: 620px;
+
+    /* position: absolute;
+    top: 20%;
+    left: 46%; */
+
+    width: 150px;
+    display: block;
+    fill-opacity: 0;
+    stroke: transparent;
+}
+
+.part1 {
+    fill-opacity: 0;
+    stroke-dashoffset: 0;
+    stroke-dasharray: 1000;
+    animation: man 6s ease-in-out;
+    stroke: #610707;
+}
+
+@keyframes man {
+    0% {
+        stroke-dashoffset: 1000;
+    }
+
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+#advanced-search {
+    position: absolute;
+    top: 55%;
+    left: 68%;
+    color: black;
+    transition: transform 0.3s ease-in-out;
+}
+
+#advanced-search:hover {
+    transform: scale(1.1);
+    color: white;
+    font-weight: bold;
+}
+

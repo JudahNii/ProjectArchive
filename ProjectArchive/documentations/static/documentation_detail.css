@@ -1,0 +1,228 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #E6E6E6;
+    height: 100%;
+}
+
+header {
+    background-color: #0C4932;
+    color: #fff;
+    padding: 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h1 {
+    margin: 0;
+}
+
+.login-btn {
+    background-color: #610707;
+    color: #fff;
+    border: none;
+    padding: 0.5em 1em;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.login-btn:hover {
+    background-color: #4e0f0f;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2em;
+    margin-bottom: 80px;
+    transition: filter 0ms ease-in-out 300ms;
+
+}
+
+
+.project-detail {
+    background-color: #fff;
+    padding: 2em;
+    border: 1px solid #ccc;
+    border-radius: 0.5em;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    width: 80%;
+}
+
+.project-detail h2 {
+    color: #610707;
+    margin-top: 0;
+    margin-bottom: 15px;
+    padding: 0;
+    font-size: 50px;
+}
+
+.project-detail ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.project-detail li {
+    margin-bottom: 1em;
+}
+
+.label {
+    font-weight: bold;
+/*    margin-right: 1em;*/
+}
+
+.value {
+    font-size: 1em;
+    color: #333;
+}
+
+.abstract {
+    margin-top: 2em;
+}
+
+.abstract h3 {
+    margin-top: 0;
+}
+
+.abstract p {
+    margin-bottom: 1em;
+}
+
+.project-document {
+    margin-top: 2em;
+}
+
+.project-document h3 {
+    margin-top: 0;
+}
+
+.button-group {
+    text-align: right;
+    align-items: center;
+    /* margin-left: 70%; */
+}
+
+.approve-btn,.disapprove-btn,.remove-btn,.delete-btn {
+    background-color: #610707;
+    color: #fff;
+    border: none;
+    padding: 0.5em 1em;
+    font-size: 1em;
+    cursor: pointer;
+    margin-left: 1em;
+}
+
+.approve-btn:hover,.disapprove-btn:hover,.remove-btn:hover,.delete-btn:hover {
+    background-color: #4e0f0f;
+}
+
+.below-pdf {
+    margin-top: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#return-link {
+    color: #610707;
+    position: relative;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#return-link p {
+    margin-bottom: 0;
+}
+
+#return-link::after {
+    content: '⬅';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    display: block;
+    right: 0;
+    background: none;
+    transition: width 0.4s ease;
+    -webkit-transition: width 0.4s ease;
+    margin-top: -3px;
+    margin-right: 18px;
+}
+
+#return-link:hover::after {
+    width: 80%;
+    right: 0;
+    background: none;
+}
+
+.value {
+    font-size: 1em;
+    color: #333;
+    transition: color 0.2s ease-in-out; /* Add transition for smooth animation */
+}
+
+.value:hover {
+    color: #610707; /* Change color on hover */
+    cursor: pointer; /* Change cursor to indicate it's a link */
+    font-size: 1.1em;
+}
+
+.popup {
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    width: 98%;
+    max-width: 450px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0px 2px 5px 5px rgba(0, 0, 0, 0.1);
+    transition: opacity 300ms ease-in-out, transform 300ms ease-in-out;
+    opacity: 0;
+    z-index: 1000;
+}
+
+.popup > * {
+    margin: 15px 0px;
+}
+
+body.active-popup {
+    overflow: hidden;
+}
+
+body.active-popup::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    filter: blur(5px);
+    z-index: 999; /* Ensure it's below the popup */
+}
+
+body.active-popup .popup {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    transition: opacity 300ms ease-in-out, transform 300ms ease-in-out;
+}
+
+.popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 102%;
+}
+
+.popup-header button {
+    border: none; 
+    background: none; 
+    font-size: 20px; 
+    cursor: pointer;
+}
+

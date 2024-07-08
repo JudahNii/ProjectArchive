@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'student_list.css' %}">
+{% endblock %}
+
+{% block hod-links %}
+<a href="{% url 'bulk_upload_documentations' %}">
+    <button class="login-btn">Bulk Upload</button>
+</a>
+<a href="{% url 'upload_excel' %}">
+    <button class="login-btn">Create Student</button>
+</a>
+<a href="{% url 'logout' %}">
+    <button class="login-btn">Logout</button>
+</a>
+{% endblock %}
+
+{% block content %}
+<main role="main" class="container">
+
+    <section class="search-bar">
+        <form method="GET" action="{% url 'student_list' %}">
+            {% csrf_token %}
+            <input type="search" id="search-input" placeholder="Search students..." name="search_query">
+            <button class="search-btn">Search</button>
+        </form>
+
+    </section>
+
+    <h2>Student List</h2>
+    <table id="student-list">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Department</th>
+                <th>Programme</th>
+                <th>Gender</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in students %}
+            <tr>
+                <td>{{ student.username }}</td>
+                <td>{{ student.first_name }}</td>
+                <td>{{ student.last_name }}</td>
+                <td>
+                    <a href="{% url 'student_list' %}?search_query={{ student.department }}">
+                    {{ student.department|capfirst|truncatewords:3 }}</td>
+                    </a>
+                <td>
+                    <a href="{% url 'student_list' %}?search_query={{ student.programme }}">
+                    {{ student.programme|capfirst|truncatewords:3 }}</td>
+                    </a>
+                <td>{{ student.gender|capfirst }}</td>
+                <td>{{ student.user.status|capfirst }}</td>
+                <td>
+                    <a href="{% url 'update_student' student.username %}">
+                        <button class="action-btn">Update Profile</button>
+                    </a>
+                </td>
+
+            </tr>
+            {% empty %}
+                <h3>No students found.</h3>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</main>
+{% endblock %}
+<!-- Add your JavaScript links here -->
+</body>
+
+</html>

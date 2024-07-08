@@ -1,0 +1,83 @@
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* padding: 2em; */
+}
+
+main button {
+    background-color: #610707; /* updated search button background color */
+    color: #fff;
+    border: none;
+    padding: 0.5em 1em;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.create_student {
+    background-color: #fff;
+    padding: 2em;
+    border: 1px solid #ccc;
+    border-radius: 0.5em;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    width: 550px;
+    margin-top: 50px;
+}
+
+.create_student label {
+    display: block;
+    margin-bottom: 0.3em;
+}
+
+.create_student input {
+    width: 100%;
+    padding: 0.5em;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    margin-bottom: 1em;
+
+}
+
+.create_student select option {
+    font-family: 'Poppins', sans-serif;
+}
+
+.create_student button[type="submit"] {
+    background-color: #610707;
+    color: #fff;
+    border: none;
+    padding: 0.5em 1em;
+    font-size: 1em;
+    cursor: pointer;
+    margin-top: 1em;
+    margin-left: 0;
+}
+
+.create_student button[type="submit"]:hover {
+    background-color: #4e0f0f;
+}
+
+.create_student select {
+    font-family: 'Poppins', sans-serif;
+}
+
+
+.create_student input:focus,
+.create_student textarea:focus,
+.create_student select:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+
+#upload_excel{
+    margin-bottom: 110px;
+}
+
+#upload_excel p {
+    margin: 0;
+}
+
+#upload_excel button {
+    margin-top: 0.5em;
+}
